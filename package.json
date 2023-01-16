@@ -1,0 +1,26 @@
+{
+  "name": "project3",
+  "version": "1.0.0",
+  "description": "url shortner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sandyvaranasi/project-URLshortnerGroup12.git"
+  },
+  "author": "Sandeep , Tushar , Ruksar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sandyvaranasi/project-URLshortnerGroup12/issues"
+  },
+  "homepage": "https://github.com/Sandyvaranasi/project-URLshortnerGroup12#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.3",
+    "nodemon": "^2.0.20",
+    "shortid": "^2.2.16",
+    "url-validation": "^2.1.0"
+  }
+}
