@@ -6,17 +6,20 @@ const shortId = require("shortid");
 
 
 const createUrl = async function (req, res) {
+
     try {
 
         let data = req.body;
 
         if (Object.keys(data).length == 0) return res.status(400).send({ status: false, message: "please enter URL" });
 
-        if(Object.values(data)=="") return res.status(400).send({ status: false, message: "Entry field is empty" });
+        data.longUrl = data.longUrl.trim();
+
+        if (Object.values(data) == "") return res.status(400).send({ status: false, message: "Entry field is empty" });
 
         if (!isValidUrl(data.longUrl)) return res.status(400).send({ status: false, message: "invalid URL" });
 
-        const uniqueUrl = await model.findOne(data).select({_id:0,__v:0,createdAt:0,updatedAt:0});
+        const uniqueUrl = await model.findOne(data).select({ _id: 0, __v: 0, createdAt: 0, updatedAt: 0 });
 
         if (uniqueUrl) return res.status(200).send({ status: true, data: uniqueUrl });
 
@@ -28,9 +31,9 @@ const createUrl = async function (req, res) {
 
         const shorterUrl = await model.create(data);
 
-        let {urlCode,longUrl,shortUrl} = shorterUrl
+        let { urlCode, longUrl, shortUrl } = shorterUrl
 
-        res.status(201).send({ status: true, data: {urlCode,longUrl,shortUrl} });
+        res.status(201).send({ status: true, data: { urlCode, longUrl, shortUrl } });
 
     } catch (err) {
 
@@ -42,14 +45,15 @@ const createUrl = async function (req, res) {
 
 
 const getUrl = async function (req, res) {
+
     try {
         let url = req.params.urlCode.trim().toLowerCase();
 
         let validUrlCode = shortId.isValid(url);
 
-        if(!validUrlCode) return res.status(400).send({status:false,message:"invalid urlCode"})
+        if (!validUrlCode) return res.status(400).send({ status: false, message: "invalid urlCode" })
 
-        const longUrl = await model.findOne({ urlCode: url});
+        const longUrl = await model.findOne({ urlCode: url });
 
         if (!longUrl) return res.status(404).send({ status: false, message: "URL not found" });
 
