@@ -12,9 +12,7 @@ const createUrl = async function (req, res) {
 
         if (Object.keys(data).length == 0) return res.status(400).send({ status: false, message: "please enter URL" });
 
-        //data = data.longUrl.trim();
-
-        if(Object.values(data)=="") return res.status(400).send({ status: false, message: "please enter URL" });
+        if(Object.values(data)=="") return res.status(400).send({ status: false, message: "Entry field is empty" });
 
         if (!isValidUrl(data.longUrl)) return res.status(400).send({ status: false, message: "invalid URL" });
 
@@ -45,19 +43,17 @@ const createUrl = async function (req, res) {
 
 const getUrl = async function (req, res) {
     try {
-        let url = req.params.urlCode;
-
-       url =  url.trim();
+        let url = req.params.urlCode.trim().toLowerCase();
 
         let validUrlCode = shortId.isValid(url);
 
         if(!validUrlCode) return res.status(400).send({status:false,message:"invalid urlCode"})
 
-        const longUrl = await model.findOne({ urlCode: url.toLowerCase().trim() });
+        const longUrl = await model.findOne({ urlCode: url});
 
         if (!longUrl) return res.status(404).send({ status: false, message: "URL not found" });
 
-        return res.status(302).redirect(longUrl.longUrl) // 302 for found
+        return res.status(302).redirect(longUrl.longUrl)
 
     } catch (err) {
 
