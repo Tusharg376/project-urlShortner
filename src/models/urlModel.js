@@ -1,6 +1,4 @@
 const { Schema , model } = require("mongoose");
-const shortId = require("shortid");
-
 
 const urlSchema = new Schema({
     urlCode: {
