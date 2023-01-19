@@ -17,12 +17,13 @@
   },
   "homepage": "https://github.com/Sandyvaranasi/project-URLshortnerGroup12#readme",
   "dependencies": {
+    "axios": "^1.2.3",
     "express": "^4.18.2",
     "mongoose": "^6.8.3",
     "nodemon": "^2.0.20",
+    "redis": "^3.1.2",
     "shortid": "^2.2.16",
     "url-validation": "^2.1.0",
-    "util": "^0.12.5",
-    "redis": "^3.1.2"
+    "util": "^0.12.5"
   }
 }
