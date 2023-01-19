@@ -63,7 +63,7 @@ const createUrl = async function (req, res) {
 
         }
 
-        if (!isValidUrl(data.longUrl)) return res.status(400).send({ status: false, message: "invalid URL" });
+        if (!isValidUrl(data.longUrl)) return res.status(400).send({ status: false, message: "invalid link" });
 
         const uniqueUrl = await model.findOne(data).select({ _id: 0, __v: 0, createdAt: 0, updatedAt: 0 });
 
