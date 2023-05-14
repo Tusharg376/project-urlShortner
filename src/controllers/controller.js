@@ -150,24 +150,4 @@ module.exports.getUrl = getUrl;
 
 
 
-// const createurl = async function(req,res){
-//     try{
-//  let data = req.body;
-//  let cache = await GET_ASYNC(data.longUrl)
-//  if(cache) return res.status(200).send({status:true,data:JSON.parse(cache)});
-//  let dataInDb = await model.findOne(data).select({longUrl:1,urlCode:1,shortUrl:1,_id:0})
-//  if(dataInDb){
-//     await SETEX_ASYNC(data.longUrl,24*3600,JSON.stringify(dataInDb))
-//     return res.status(200).send({status:true,data:dataInDb})
-//  }
-//  data.urlCode = shortId.generate(),
-//  data.shortUrl = `http://loclahost:3000${data.urlCode}`
-//  let newUrl = await model.create(data);
-//  let {longUrl,urlCode,shortUrl} = newUrl;
-//  await SETEX_ASYNC(longUrl,86400,JSON.stringify({longUrl,urlCode,shortUrl}));
-//  return res.status(201).send({status:true,data:{longUrl,urlCode,shortUrl}})
 
-//     }catch(err){
-//         res.status(500).send({status:true,message:err.message})
-//     }
-// }
