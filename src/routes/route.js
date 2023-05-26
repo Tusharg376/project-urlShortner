@@ -3,7 +3,6 @@ const router = express.Router()
 const controller = require("../controllers/controller");
 
 
-
 router.post('/url/shorten',controller.createUrl)
 
 

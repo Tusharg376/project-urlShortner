@@ -12,9 +12,9 @@ const { promisify } = require('util');
 
 const redisClient = redis.createClient(
 
-    16948,
+    process.env.REDIS_PORT,
 
-    'redis-16948.c305.ap-south-1-1.ec2.cloud.redislabs.com',
+    process.env.REDIS_STRING,
 
     { no_ready_check: true }
 
@@ -22,7 +22,7 @@ const redisClient = redis.createClient(
 
 redisClient.auth(
 
-    '6DLOlO0DrbeI2rubVd34Ipg74aQeXhdj',
+    process.env.REDIS_PASS,
 
     function (err) {
 
@@ -89,7 +89,7 @@ const createUrl = async function (req, res) {
 
         data.urlCode = data.urlCode.toLowerCase().trim()
 
-        data.shortUrl = `http://localhost:3000/${data.urlCode}`
+        data.shortUrl = `${process.env.BASE_URL}${data.urlCode}`
 
         const shorterUrl = await model.create(data);
 
